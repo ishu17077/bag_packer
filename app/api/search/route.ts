@@ -97,6 +97,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     ...response,
     groqConnected: hasGroq,
+    groqModel: hasGroq ? "Qwen-27B (Groq)" : null,
     durationMs,
     timestamp: new Date().toISOString(),
   });
@@ -150,7 +151,7 @@ export async function POST(req: NextRequest) {
       ...response,
       groqConnected: hasGroq,
       aiPowered,
-      groqModel: aiPowered ? "groq/compound-mini" : null,
+      groqModel: aiPowered ? "Qwen-27B (Groq)" : (hasGroq ? "Qwen-27B (Groq)" : null),
       durationMs,
       timestamp: new Date().toISOString(),
     });

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Sparkles, Check } from "lucide-react";
 
@@ -52,16 +52,53 @@ export default function Home() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleExecuteSearch = useCallback(
-    (queryToSearch: string) => {
+    async (queryToSearch: string) => {
       setIsSearching(true);
-      setTimeout(() => {
-        const resp = searchProducts(queryToSearch, {}, searchMode);
-        setSearchResponse(resp);
+      try {
+        const res = await fetch("/api/search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: queryToSearch, mode: searchMode }),
+        });
+        if (res.ok) {
+          const data: SearchResponse = await res.json();
+          setSearchResponse(data);
+        } else {
+          const fallback = searchProducts(queryToSearch, {}, searchMode);
+          setSearchResponse(fallback);
+        }
+      } catch {
+        const fallback = searchProducts(queryToSearch, {}, searchMode);
+        setSearchResponse(fallback);
+      } finally {
         setIsSearching(false);
-      }, 50);
+      }
     },
     [searchMode]
   );
+
+  // Connect to Groq backend on mount to load live AI-powered results
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/api/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: searchQuery, mode: searchMode }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: SearchResponse | null) => {
+        if (data && isMounted) {
+          setSearchResponse(data);
+        }
+      })
+      .catch(() => {
+        // Fallback already initialized in initialSearchResponse
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [searchQuery, searchMode]);
 
   const handleAddToCart = useCallback((product: Product) => {
     setCartItems((prev) => [...prev, product]);
@@ -106,6 +143,7 @@ export default function Home() {
             onSearch={handleExecuteSearch}
             isLoading={isSearching}
             groqConnected={searchResponse.groqConnected}
+            groqModel={searchResponse.groqModel}
           />
         </section>
 

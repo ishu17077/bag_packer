@@ -9,6 +9,7 @@ interface SearchBarProps {
   onSearch: (q: string) => void;
   isLoading: boolean;
   groqConnected?: boolean;
+  groqModel?: string | null;
 }
 
 export const SUGGESTED_QUERIES = [
@@ -25,6 +26,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
   isLoading,
   groqConnected = false,
+  groqModel,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -143,7 +145,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             }`}
           />
           <span>
-            LLM: {groqConnected ? "Llama-3.3-70B Active" : "Local Semantic Mode"}
+            LLM: {groqConnected ? `${groqModel || "Groq AI"} Active` : "Local Semantic Mode"}
           </span>
         </div>
       </div>
