@@ -23,6 +23,8 @@ export interface SearchResponse {
   fallbackProducts?: Product[];
   totalMatches: number;
   searchMode: "semantic" | "keyword";
+  groqConnected?: boolean;
+  durationMs?: number;
   comparison?: {
     semanticMatchCount: number;
     keywordMatchCount: number;

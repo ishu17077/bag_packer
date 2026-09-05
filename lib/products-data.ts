@@ -11,6 +11,8 @@ export interface Product {
   inStock: boolean;
   isPopular?: boolean;
   badge?: string;
+  image: string;
+  specs?: Record<string, string>;
 }
 
 export const PRODUCT_CATALOG: Product[] = [
@@ -28,6 +30,13 @@ export const PRODUCT_CATALOG: Product[] = [
     inStock: true,
     isPopular: true,
     badge: "Top Match",
+    image: "https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Membrane": "3-Layer eVent 20K/20K",
+      "Insulation": "Microfiber Thermo-Core 80g",
+      "Weight": "480g",
+      "Seams": "100% Fully Taped",
+    },
   },
   {
     id: "prod-02",
@@ -42,6 +51,13 @@ export const PRODUCT_CATALOG: Product[] = [
     inStock: true,
     isPopular: true,
     badge: "Ultralight",
+    image: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Material": "20D Ripstop Nylon with DWR",
+      "Packability": "Self-stowing chest pocket",
+      "Weight": "195g",
+      "Ventilation": "Pit Zips",
+    },
   },
   {
     id: "prod-03",
@@ -55,6 +71,13 @@ export const PRODUCT_CATALOG: Product[] = [
     semanticKeywords: ["warm", "freezing", "down parka", "insulated", "winter", "heavy coat", "snow", "sleet", "arctic", "cozy", "extreme cold"],
     inStock: true,
     isPopular: true,
+    image: "https://images.unsplash.com/photo-1539533018447-63fcce667883?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Fill Power": "800 Fill Goose Down",
+      "Temp Rating": "-20°F / -29°C",
+      "Shell": "Pertex Quantum Pro",
+      "Weight": "720g",
+    },
   },
   {
     id: "prod-04",
@@ -67,6 +90,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["waterproof", "outdoor use", "full side zippers", "articulated knees", "abrasion resistant"],
     semanticKeywords: ["waterproof", "pants", "trousers", "rain", "hiking", "trail", "storm", "outdoor use", "dry"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Waterproofing": "15,000mm Hydrostatic Head",
+      "Side Zips": "Full Length YKK AquaGuard",
+      "Fabric": "70D Nylon Reinforcements",
+    },
   },
 
   // --- Footwear ---
@@ -82,6 +111,12 @@ export const PRODUCT_CATALOG: Product[] = [
     semanticKeywords: ["shoes", "boots", "footwear", "hiking", "trail", "waterproof", "mud", "walking", "backpacking", "ankle support", "outdoor use"],
     inStock: true,
     isPopular: true,
+    image: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Outsole": "Vibram Megagrip 5mm Lugs",
+      "Upper": "Nubuck Leather & Ballistic Mesh",
+      "Lining": "eVent Waterproof Bootie",
+    },
   },
   {
     id: "prod-06",
@@ -96,6 +131,12 @@ export const PRODUCT_CATALOG: Product[] = [
     inStock: true,
     isPopular: true,
     badge: "Bestseller",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Cushioning": "Dual-Density CloudFoam+",
+      "Arch Support": "Podiatrist-Certified Orthotic",
+      "Outsole": "Oil-and-Slip Resistant ASTM F2913",
+    },
   },
   {
     id: "prod-07",
@@ -108,6 +149,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["lightweight", "quick-dry", "trail traction", "rock plate protection", "speed lacing"],
     semanticKeywords: ["running", "trail runner", "shoes", "sneakers", "lightweight", "quick drying", "gravel", "exercise", "outdoor"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Drop": "0mm (Balanced Cushioning)",
+      "Stack Height": "25mm",
+      "Weight": "260g (Single Shoe)",
+    },
   },
   {
     id: "prod-08",
@@ -120,6 +167,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["insulated", "waterproof", "sub-zero rated", "deep snow traction", "shearling collar"],
     semanticKeywords: ["warm", "winter", "snow", "boots", "insulated", "ice", "freezing", "cold weather", "waterproof"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Insulation": "400g 3M Thinsulate Ultra",
+      "Shell": "Vulcanized Waterproof Rubber",
+      "Temperature": "-25°F / -32°C",
+    },
   },
 
   // --- Backpacks & Luggage ---
@@ -136,6 +189,12 @@ export const PRODUCT_CATALOG: Product[] = [
     inStock: true,
     isPopular: true,
     badge: "Travel Pick",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Capacity": "35 Liters (TSA Cabin Approved)",
+      "Laptop Pocket": "Fits up to 16-inch MacBook Pro",
+      "Fabric": "1000D Waterproof Cordura",
+    },
   },
   {
     id: "prod-10",
@@ -148,6 +207,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["100% waterproof", "roll-top buckle seal", "submersible", "outdoor use", "reflective trim"],
     semanticKeywords: ["waterproof", "dry bag", "kayak", "boating", "rain", "sack", "pouch", "submersible", "outdoor use", "river"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Rating": "IPX7 Submersible (1 meter for 30 min)",
+      "Material": "500D Tarpaulin PVC",
+      "Closure": "3-Fold Roll-Top Buckle",
+    },
   },
   {
     id: "prod-11",
@@ -160,6 +225,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["high capacity", "integrated rain cover", "weight distributing frame", "outdoor use", "trekking pole attachments"],
     semanticKeywords: ["hiking", "backpack", "trekking", "camping", "multiday", "outdoor use", "rain cover", "trail", "expedition"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1509783236416-c9ad59bae472?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Volume": "55L + 10L Extension",
+      "Frame": "Lightweight Aluminum Wishbone",
+      "Rain Cover": "Built-in Neon Hi-Vis Cover",
+    },
   },
   {
     id: "prod-12",
@@ -172,6 +243,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["waterproof", "laptop protection", "minimalist aesthetic", "bike commuter blinker loop", "hidden card pocket"],
     semanticKeywords: ["laptop", "bag", "backpack", "commute", "city", "bike", "waterproof", "rain", "work", "school", "minimalist"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Volume": "18 Liters",
+      "Laptop Protection": "360° Shock-Absorbent Fleece",
+      "Material": "Matte Hydrophobic TPU",
+    },
   },
 
   // --- Trail Equipment & Camping ---
@@ -186,6 +263,13 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["waterproof rainfly", "ultralight under 3lbs", "outdoor use", "storm stable", "easy 3-minute pitch"],
     semanticKeywords: ["tent", "camping", "hiking", "outdoor use", "rain", "shelter", "sleep", "backpacking", "lightweight", "waterproof"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Capacity": "2-Person (40 sq ft)",
+      "Trail Weight": "1.32 kg (2.9 lbs)",
+      "Rainfly": "15D Sil-Nylon 3000mm",
+      "Poles": "DAC Featherlite NSL Aluminum",
+    },
   },
   {
     id: "prod-14",
@@ -198,6 +282,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["insulated", "warm down to 20F", "water-resistant shell", "retains heat when damp", "compression sack included"],
     semanticKeywords: ["warm", "sleeping bag", "insulated", "camping", "cold night", "hiking", "sleep", "thermal", "outdoor use"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Temperature Limit": "20°F / -7°C",
+      "Insulation": "ThermaPro Hydro-Synthetic",
+      "Shape": "Ergonomic Mummy with Draft Collar",
+    },
   },
   {
     id: "prod-15",
@@ -211,6 +301,12 @@ export const PRODUCT_CATALOG: Product[] = [
     semanticKeywords: ["flashlight", "headlamp", "light", "torch", "night", "hiking", "waterproof", "rain", "hands free", "camping"],
     inStock: true,
     isPopular: true,
+    image: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Brightness": "800 Lumens Max (130m Beam)",
+      "Battery": "2200mAh USB-C Rechargeable",
+      "Water Resistance": "IPX8 (Submersible 2m)",
+    },
   },
   {
     id: "prod-16",
@@ -223,6 +319,13 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["shock-absorbing", "collapsible", "cork grip", "outdoor use", "mud and snow baskets"],
     semanticKeywords: ["hiking sticks", "poles", "trekking", "walking", "knee support", "trail", "mountain", "outdoor use"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Shaft": "100% High-Modulus Carbon Fiber",
+      "Grip": "Natural Ergonomic Cork",
+      "Packed Length": "36cm (Folded)",
+      "Weight": "190g per pole",
+    },
   },
 
   // --- Activewear & Base Layers ---
@@ -238,6 +341,12 @@ export const PRODUCT_CATALOG: Product[] = [
     semanticKeywords: ["warm", "thermal", "base layer", "wool", "merino", "underwear", "hiking", "skiing", "winter", "cold weather", "cozy"],
     inStock: true,
     isPopular: true,
+    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Material": "100% Pure Merino Wool (250gsm)",
+      "Stitching": "Anti-Chafe Flatlock Seams",
+      "Properties": "Thermal Regulation & Natural Odor Resistance",
+    },
   },
   {
     id: "prod-18",
@@ -250,6 +359,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["sweat-wicking", "UPF 50+ sun protection", "lightweight", "anti-chafing", "rapid dry"],
     semanticKeywords: ["shirt", "t-shirt", "running", "hiking", "summer", "hot weather", "cooling", "breathable", "lightweight", "sweat wicking"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Sun Protection": "UPF 50+ UV Guard",
+      "Weight": "95g",
+      "Drying Rate": "3x faster than standard cotton",
+    },
   },
   {
     id: "prod-19",
@@ -262,6 +377,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["waterproof", "insulated", "leather palm", "wrist leash", "extreme warmth"],
     semanticKeywords: ["gloves", "mittens", "hands", "warm", "insulated", "snow", "skiing", "winter", "freezing", "waterproof"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Insulation": "PrimaLoft Gold 200g",
+      "Palm": "Waterproof Goatskin Leather",
+      "Membrane": "Gore-Tex Warm Membrane",
+    },
   },
 
   // --- Accessories ---
@@ -277,6 +398,12 @@ export const PRODUCT_CATALOG: Product[] = [
     semanticKeywords: ["water filter", "purifier", "drinking", "hiking", "camping", "survival", "outdoor use", "stream", "lake"],
     inStock: true,
     isPopular: true,
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Pore Size": "0.1 Micron Absolute Hollow Fiber",
+      "Lifespan": "Up to 100,000 Gallons",
+      "Weight": "57g (2 oz)",
+    },
   },
   {
     id: "prod-21",
@@ -289,6 +416,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["100% waterproof", "touchscreen responsive", "floating airbag rim", "lanyard included"],
     semanticKeywords: ["phone case", "waterproof", "rain", "beach", "boat", "swimming", "dry", "pouch", "submersible"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Certification": "IPX8 Certified (30 meters)",
+      "Compatibility": "Screens up to 6.9 inches",
+      "Features": "Self-floating airbag rim",
+    },
   },
   {
     id: "prod-22",
@@ -301,6 +434,12 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["insulated", "fleece warmth", "helmet compatible", "snug fit", "wind resistant"],
     semanticKeywords: ["hat", "beanie", "warm", "fleece", "head", "winter", "cold weather", "hiking", "insulated"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Fabric": "PolarFleece 200 Double-Knit",
+      "Fit": "Ergonomic Skull Beanie",
+      "Weight": "42g",
+    },
   },
   {
     id: "prod-23",
@@ -313,5 +452,11 @@ export const PRODUCT_CATALOG: Product[] = [
     features: ["rain-resistant", "windproof 45mph", "compact folding", "auto open-close", "lightweight"],
     semanticKeywords: ["umbrella", "rain", "storm", "windproof", "waterproof", "walking", "hiking", "portable", "compact"],
     inStock: true,
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80",
+    specs: {
+      "Wind Rating": "Withstands 45 mph Gusts",
+      "Canopy": "210T Teflon Coated Pongee",
+      "Folded Size": "27cm (10.5 inches)",
+    },
   },
 ];

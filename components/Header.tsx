@@ -1,85 +1,79 @@
 "use client";
 
 import React from "react";
-import { Cpu, Search, ShieldCheck } from "lucide-react";
-
-export type ActiveTab = "search" | "redact";
+import { Cpu, ShoppingBag } from "lucide-react";
 
 interface HeaderProps {
-  activeTab: ActiveTab;
-  setActiveTab: (tab: ActiveTab) => void;
   onOpenMcp: () => void;
+  isMcpConnected: boolean;
+  cartCount: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  activeTab,
-  setActiveTab,
   onOpenMcp,
+  isMcpConnected,
+  cartCount,
 }) => {
   return (
-    <header className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-0 z-30">
+    <header className="border-b border-zinc-200/80 bg-white/90 backdrop-blur-md sticky top-0 z-30 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Logo & Title */}
+        {/* Logo & Brand Identity */}
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center font-mono font-bold text-sm shadow-xs">
-            {activeTab === "search" ? "§" : "Ø"}
+          <div className="w-8 h-8 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-mono font-bold text-sm shadow-xs">
+            <span className="text-emerald-400">✦</span>
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h1 className="text-base font-semibold tracking-tight text-zinc-900">
-                {activeTab === "search" ? "SemanticFinder" : "RedactEngine"}
-              </h1>
-              <span className="text-[10px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
-                {activeTab === "search" ? "Use Case 4" : "Use Case 3"}
+              <span className="text-base font-bold tracking-tight text-zinc-900">
+                BagPacker
+              </span>
+              <span className="text-[10px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 font-semibold">
+                AI Search
               </span>
             </div>
-            <p className="text-xs text-zinc-500 hidden sm:block">
-              {activeTab === "search"
-                ? "Natural Language Product Search & Discovery"
-                : "Sensitive Personal Information Detection & Redaction"}
+            <p className="text-[11px] text-zinc-400 hidden sm:block font-mono">
+              Natural Language Semantic Product Discovery
             </p>
           </div>
         </div>
 
-        {/* Use Case Tabs Switcher */}
-        <nav className="flex items-center p-1 bg-zinc-100 rounded-lg border border-zinc-200">
-          <button
-            type="button"
-            onClick={() => setActiveTab("search")}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono transition-all ${
-              activeTab === "search"
-                ? "bg-white text-zinc-900 font-semibold shadow-2xs border border-zinc-200/80"
-                : "text-zinc-600 hover:text-zinc-900"
-            }`}
-          >
-            <Search className="w-3.5 h-3.5" />
-            <span>Use Case 4: Search</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab("redact")}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono transition-all ${
-              activeTab === "redact"
-                ? "bg-white text-zinc-900 font-semibold shadow-2xs border border-zinc-200/80"
-                : "text-zinc-600 hover:text-zinc-900"
-            }`}
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Use Case 3: Redact</span>
-          </button>
-        </nav>
-
-        {/* MCP Action Button */}
-        <div className="flex items-center space-x-2">
+        {/* Action Controls: Connect MCP & Cart */}
+        <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* Option for Connect MCP */}
           <button
             onClick={onOpenMcp}
-            className="flex items-center space-x-1.5 text-xs font-mono px-3 py-1.5 rounded-md border border-zinc-200 hover:border-zinc-400 bg-white hover:bg-zinc-50 text-zinc-800 transition-all shadow-2xs"
-            title="Inspect Model Context Protocol (MCP) Tool Integration"
+            className={`flex items-center space-x-2 text-xs font-mono px-3.5 py-2 rounded-xl border transition-all shadow-2xs active:scale-98 ${
+              isMcpConnected
+                ? "bg-emerald-50/80 border-emerald-300 text-emerald-900 hover:bg-emerald-100"
+                : "bg-white hover:bg-zinc-50 border-zinc-200 text-zinc-800 hover:border-zinc-300"
+            }`}
+            title="Configure and connect Model Context Protocol (MCP) server"
           >
-            <Cpu className="w-3.5 h-3.5 text-zinc-700" />
-            <span className="hidden sm:inline">MCP Spec</span>
+            <Cpu className={`w-3.5 h-3.5 ${isMcpConnected ? "text-emerald-600" : "text-zinc-600"}`} />
+            <span className="font-medium">
+              {isMcpConnected ? "MCP Connected" : "Connect MCP"}
+            </span>
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isMcpConnected ? "bg-emerald-500 animate-pulse" : "bg-zinc-300"
+              }`}
+            />
           </button>
+
+          {/* Mini Bag / Cart Indicator */}
+          <div className="relative">
+            <div
+              className="p-2 rounded-xl border border-zinc-200 bg-white text-zinc-700 flex items-center justify-center shadow-2xs"
+              title="Items in your bag"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-zinc-900 text-white font-mono text-[10px] font-bold flex items-center justify-center animate-in zoom-in-50">
+                  {cartCount}
+                </span>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </header>
