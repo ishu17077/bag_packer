@@ -2,20 +2,22 @@
 
 import React, { useState, useMemo, useCallback } from "react";
 import { Header } from "@/components/Header";
+import { Sparkles, Check } from "lucide-react";
+
+// Use Case 4: Semantic Search Components
 import { SearchBar } from "@/components/search/SearchBar";
 import { SearchDiscoveryView } from "@/components/search/SearchDiscoveryView";
 import { ConnectMcpModal } from "@/components/search/ConnectMcpModal";
 import { ProductQuickViewModal } from "@/components/search/ProductQuickViewModal";
+import { Product } from "@/lib/products-data";
 import {
   searchProducts,
   SearchResponse,
 } from "@/lib/semantic-search";
-import { Product } from "@/lib/products-data";
-import { Check, Sparkles } from "lucide-react";
 
 export default function Home() {
   // -------------------------------------------------------------
-  // Search State
+  // Natural Language Product Search & Discovery State
   // -------------------------------------------------------------
   const [searchQuery, setSearchQuery] = useState<string>(
     "warm jacket for hiking in the rain" // Initialized with spec benchmark
@@ -35,7 +37,7 @@ export default function Home() {
   // -------------------------------------------------------------
   const [isMcpModalOpen, setIsMcpModalOpen] = useState<boolean>(false);
   const [isMcpConnected, setIsMcpConnected] = useState<boolean>(true);
-  const [mcpServerUrl, setMcpServerUrl] = useState<string>("http://localhost:3000/api/search");
+  const [mcpServerUrl, setMcpServerUrl] = useState<string>("http://localhost:3000/api/mcp");
 
   // -------------------------------------------------------------
   // Quick View & Shopping Bag State
@@ -174,3 +176,5 @@ export default function Home() {
     </div>
   );
 }
+
+

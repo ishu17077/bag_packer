@@ -24,7 +24,7 @@ export interface SearchResponse {
   totalMatches: number;
   searchMode: "semantic" | "keyword";
   groqConnected?: boolean;
-  durationMs?: number;
+  groqModel?: string | null;
   comparison?: {
     semanticMatchCount: number;
     keywordMatchCount: number;

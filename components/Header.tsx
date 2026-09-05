@@ -19,20 +19,20 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Logo & Brand Identity */}
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded-xl bg-zinc-900 text-white flex items-center justify-center font-mono font-bold text-sm shadow-xs">
-            <span className="text-emerald-400">✦</span>
+          <div className="w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center font-mono font-bold text-sm shadow-xs">
+            §
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="text-base font-bold tracking-tight text-zinc-900">
-                BagPacker
-              </span>
-              <span className="text-[10px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200 font-semibold">
-                AI Search
+              <h1 className="text-base font-semibold tracking-tight text-zinc-900">
+                SemanticFinder
+              </h1>
+              <span className="text-[10px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200">
+                Use Case 4
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 hidden sm:block font-mono">
-              Natural Language Semantic Product Discovery
+            <p className="text-xs text-zinc-500 hidden sm:block">
+              Natural Language Product Search & Discovery
             </p>
           </div>
         </div>

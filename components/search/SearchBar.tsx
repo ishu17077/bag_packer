@@ -142,7 +142,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               groqConnected ? "bg-emerald-500 animate-pulse" : "bg-zinc-400"
             }`}
           />
-          <span>{groqConnected ? "Groq LLM Active" : "Local Semantic Engine"}</span>
+          <span>
+            LLM: {groqConnected ? "Llama-3.3-70B Active" : "Local Semantic Mode"}
+          </span>
         </div>
       </div>
     </div>

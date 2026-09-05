@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sensitive Data Detection & Redaction Engine",
-  description: "Minimalist PII detection and redaction platform with NER, context-aware heuristics, and MCP integration.",
+  title: "SemanticFinder — Natural Language Product Search & Discovery",
+  description: "Search products in everyday language with intent mapping, concept ontology, and Model Context Protocol (MCP) tool integration.",
 };
 
 export default function RootLayout({
