@@ -105,8 +105,10 @@ export const ConnectMcpModal: React.FC<ConnectMcpModalProps> = ({
     {
       mcpServers: {
         "bagpacker-catalog": {
-          transport: "http",
-          url: serverUrl || "http://localhost:3000/api/search",
+          command: "node",
+          args: [
+            "c:/Users/asush/OneDrive/Desktop/TCS Hackathon/bag_packer/mcp-server.mjs",
+          ],
         },
       },
     },
