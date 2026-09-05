@@ -1,0 +1,9 @@
+EMPLOYEE ONBOARDING FORM
+Candidate Name: Priya Sharma
+Email Address: priya.sharma@techcorp.in
+Contact Number: +91 9123456780
+Income Tax PAN: ABCDE1234F
+Aadhaar Identifier: 4532 8901 2345
+Designation: Senior Research Engineer
+Reporting Manager: Dr. Vikram Malhotra
+Corporate Office: Bangalore Innovation Hub
