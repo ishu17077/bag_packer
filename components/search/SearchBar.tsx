@@ -8,6 +8,7 @@ interface SearchBarProps {
   setQuery: (q: string) => void;
   onSearch: (q: string) => void;
   isLoading: boolean;
+  groqConnected?: boolean;
 }
 
 export const SUGGESTED_QUERIES = [
@@ -24,6 +25,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   setQuery,
   onSearch,
   isLoading,
+  groqConnected = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -106,25 +108,39 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         </div>
       </form>
 
-      {/* Suggested Prompt Chips */}
-      <div className="flex items-center space-x-2 overflow-x-auto pb-1 text-xs">
-        <span className="flex items-center space-x-1 text-zinc-400 font-mono text-[11px] shrink-0">
-          <Sparkles className="w-3 h-3 text-zinc-500" />
-          <span>Try:</span>
-        </span>
-        <div className="flex items-center space-x-1.5 shrink-0">
-          {SUGGESTED_QUERIES.map((sq) => (
-            <button
-              key={sq.text}
-              type="button"
-              onClick={() => handleChipClick(sq.text)}
-              className="px-2.5 py-1 rounded-md bg-zinc-100/80 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 text-xs font-mono transition-all truncate max-w-[280px]"
-              title={`Search: "${sq.text}"`}
-            >
-              <span className="text-zinc-400 text-[10px] mr-1">[{sq.label}]</span>
-              {sq.text}
-            </button>
-          ))}
+      {/* Suggested Prompt Chips & Groq Status */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 text-xs">
+        <div className="flex items-center space-x-2 overflow-x-auto pb-1">
+          <span className="flex items-center space-x-1 text-zinc-400 font-mono text-[11px] shrink-0">
+            <Sparkles className="w-3 h-3 text-zinc-500" />
+            <span>Try:</span>
+          </span>
+          <div className="flex items-center space-x-1.5 shrink-0">
+            {SUGGESTED_QUERIES.map((sq) => (
+              <button
+                key={sq.text}
+                type="button"
+                onClick={() => handleChipClick(sq.text)}
+                className="px-2.5 py-1 rounded-md bg-zinc-100/80 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 text-xs font-mono transition-all truncate max-w-[280px]"
+                title={`Search: "${sq.text}"`}
+              >
+                <span className="text-zinc-400 text-[10px] mr-1">[{sq.label}]</span>
+                {sq.text}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Groq AI Status Pill */}
+        <div className="flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-zinc-50 text-[10px] font-mono text-zinc-500 border border-zinc-200 shrink-0 self-start sm:self-auto">
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${
+              groqConnected ? "bg-emerald-500 animate-pulse" : "bg-amber-400"
+            }`}
+          />
+          <span>
+            Groq LLM: {groqConnected ? "Llama-3.3-70B Active" : "Local Semantic Mode"}
+          </span>
         </div>
       </div>
     </div>

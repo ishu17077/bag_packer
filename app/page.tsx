@@ -213,6 +213,7 @@ export default function Home() {
               setQuery={setSearchQuery}
               onSearch={(q) => handleExecuteSearch(q, filters, searchMode)}
               isLoading={isSearching}
+              groqConnected={searchResponse.groqConnected}
             />
 
             {/* Discovery Filters & Semantic Mode Toggle */}

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { searchProducts, SearchFilters } from "@/lib/semantic-search";
+import { getGroqClient, groqRerankProducts } from "@/lib/groq";
 
 // MCP Tool Definition for Agent Chatbot Integration (Bonus Challenge)
 export const SEARCH_MCP_TOOL_DEFINITION = {
@@ -59,11 +60,14 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const query = searchParams.get("q") ?? searchParams.get("query");
   const inspectMcp = searchParams.get("mcp") === "true";
+  const hasGroq = Boolean(getGroqClient());
 
   if (inspectMcp || !query) {
     return NextResponse.json({
       status: "online",
       engine: "Natural Language Product Search & Discovery v1.0",
+      groqConnected: hasGroq,
+      groqModel: hasGroq ? "groq/compound-mini" : null,
       mcp_tool: SEARCH_MCP_TOOL_DEFINITION,
       sample_queries: [
         "warm jacket for hiking in the rain",
@@ -92,6 +96,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     ...response,
+    groqConnected: hasGroq,
     durationMs,
     timestamp: new Date().toISOString(),
   });
@@ -109,10 +114,43 @@ export async function POST(req: NextRequest) {
       filters || {},
       mode === "keyword" ? "keyword" : "semantic"
     );
+
+    const hasGroq = Boolean(getGroqClient());
+    let aiPowered = false;
+
+    // If Groq is connected and query produced candidates in semantic mode, enhance with Groq LLM
+    if (hasGroq && response.status === "ok" && response.results.length > 0 && mode !== "keyword") {
+      const candidates = response.results.map((r) => r.product);
+      const reranked = await groqRerankProducts(query, candidates);
+
+      if (reranked && reranked.length > 0) {
+        aiPowered = true;
+        // Map Groq explanations and rank
+        const rerankMap = new Map(reranked.map((r) => [r.productId, r]));
+        response.results = response.results.map((item) => {
+          const groqInfo = rerankMap.get(item.product.id);
+          if (groqInfo) {
+            return {
+              ...item,
+              whyMatched: groqInfo.whyMatched || item.whyMatched,
+              score: Math.min(Math.max(groqInfo.relevanceScore, item.score), 99),
+            };
+          }
+          return item;
+        });
+
+        // Sort by updated score
+        response.results.sort((a, b) => b.score - a.score);
+      }
+    }
+
     const durationMs = Math.round((performance.now() - startTime) * 100) / 100;
 
     return NextResponse.json({
       ...response,
+      groqConnected: hasGroq,
+      aiPowered,
+      groqModel: aiPowered ? "groq/compound-mini" : null,
       durationMs,
       timestamp: new Date().toISOString(),
     });
